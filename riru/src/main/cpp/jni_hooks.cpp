@@ -103,6 +103,8 @@ onRegisterZygote(const char *className, const JNINativeMethod *methods, int numM
                 newMethods[i].fnPtr = (void *) nativeSpecializeAppProcess_r_dp3;
             else if (strcmp(nativeSpecializeAppProcess_r_dp2_sig, method.signature) == 0)
                 newMethods[i].fnPtr = (void *) nativeSpecializeAppProcess_r_dp2;
+            else if (strcmp(nativeSpecializeAppProcess_xtc_sig, method.signature) == 0)
+                newMethods[i].fnPtr = (void *) nativeSpecializeAppProcess_xtc;
 
             else
                 LOGW("found nativeSpecializeAppProcess but signature %s mismatch",
