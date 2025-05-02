@@ -18,6 +18,40 @@ namespace jni {
     void RestoreHooks(JNIEnv *env);
 }
 
+// 静态签名字符串（严格匹配参数顺序）
+const static char *nativeProcess_signature = "(II[II[[IILjava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)V";
+
+// 定义函数指针类型（参数顺序与签名完全一致）
+using nativeProcess_t = void(
+    JNIEnv*,       // JNI 环境指针
+    jclass,        // 静态方法对应 jclass，非静态方法用 jobject
+    jint,          // 参数1：int
+    jint,          // 参数2：int
+    jintArray,     // 参数3：一维 int 数组
+    jint,          // 参数4：int
+    jobjectArray,  // 参数5：二维 int 数组（jobjectArray 存储 jintArray）
+    jint,          // 参数6：int
+    jstring,       // 参数7：String
+    jstring,       // 参数8：String
+    jstring,       // 参数9：String
+    jstring        // 参数10：String
+);
+
+// 实现函数（注意异常处理和资源释放）
+[[clang::no_stack_protector]] void nativeProcess(
+    JNIEnv *env, 
+    jclass clazz,
+    jint param1, 
+    jint param2,
+    jintArray arr1D,
+    jint param3,
+    jobjectArray arr2D,
+    jint param4,
+    jstring strParam1,
+    jstring strParam2,
+    jstring strParam3,
+    jstring strParam4
+) 
 const static char *nativeForkAndSpecialize_marshmallow_sig = "(II[II[[IILjava/lang/String;Ljava/lang/String;[ILjava/lang/String;Ljava/lang/String;)I";
 
 using nativeForkAndSpecialize_marshmallow_t = jint(
