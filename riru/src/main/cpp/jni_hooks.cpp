@@ -877,7 +877,7 @@ void nativeSpecializeAppProcess_xtc(JNIEnv *env, jclass clazz,
 
 
     ((nativeSpecializeAppProcess_xtc_t *) jni::zygote::nativeSpecializeAppProcess->fnPtr)(env, clazz, uid, gid, gids, runtimeFlags, 
-                                  rlimits, mountExternal, seInfo, niceName,JNI_FALSE,instructionSet,appDataDir);
+                                  rlimits, mountExternal, seInfo, niceName,instructionSet,appDataDir);
     nativeSpecializeAppProcess_post(env, clazz, uid, JNI_FALSE); 
 }
 
