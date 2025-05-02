@@ -873,12 +873,11 @@ void nativeSpecializeAppProcess_xtc(JNIEnv *env, jclass clazz,
 {
     // ====== 预处理阶段 ======
     nativeSpecializeAppProcess_pre(env, clazz, uid, gid, gids, runtimeFlags, 
-                                  rlimits, mountExternal, seInfo, niceName);
+                                  rlimits, mountExternal, seInfo, niceName,JNI_FALSE,instructionSet,appDataDir);
 
 
     ((nativeSpecializeAppProcess_xtc_t *) jni::zygote::nativeSpecializeAppProcess->fnPtr)(env, clazz, uid, gid, gids, runtimeFlags, 
-                                  rlimits, mountExternal, seInfo, niceName);
-  
+                                  rlimits, mountExternal, seInfo, niceName,JNI_FALSE,instructionSet,appDataDir);
     nativeSpecializeAppProcess_post(env, clazz, uid, JNI_FALSE); 
 }
 
