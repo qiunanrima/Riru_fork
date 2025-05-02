@@ -19,10 +19,10 @@ namespace jni {
 }
 
 // 静态签名字符串（严格匹配参数顺序）
-const static char *nativeProcess_signature = "(II[II[[IILjava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)V";
+const static char *nativeForkAndSpecialize_xtc_sig = "(II[II[[IILjava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)V";
 
 // 定义函数指针类型（参数顺序与签名完全一致）
-using nativeProcess_t = void(
+using nativeForkAndSpecialize_xtc_t = void(
     JNIEnv*,       // JNI 环境指针
     jclass,        // 静态方法对应 jclass，非静态方法用 jobject
     jint,          // 参数1：int
@@ -38,7 +38,7 @@ using nativeProcess_t = void(
 );
 
 // 实现函数（注意异常处理和资源释放）
-[[clang::no_stack_protector]] void nativeProcess(
+[[clang::no_stack_protector]] void nativeForkAndSpecialize_xtc(
     JNIEnv *env, 
     jclass clazz,
     jint param1, 
