@@ -871,9 +871,16 @@ void nativeSpecializeAppProcess_xtc(JNIEnv *env, jclass clazz,
     jstring seInfo, jstring niceName,
     jstring instructionSet, jstring appDataDir)
 {
+
+jboolean isTopApp = JNI_FALSE;
+    jobjectArray pkgDataInfoList = nullptr;
+    jobjectArray whitelistedDataInfoList = nullptr;
+    jboolean bindMountAppDataDirs = JNI_FALSE;
+    jboolean bindMountAppStorageDirs = JNI_FALSE;
     // ====== 预处理阶段 ======
-    nativeSpecializeAppProcess_pre(env, clazz, uid, gid, gids, runtimeFlags, 
-                                  rlimits, mountExternal, seInfo, niceName,JNI_FALSE,instructionSet,appDataDir);
+    nativeSpecializeAppProcess_pre(env, clazz, uid, gid, gids, runtimeFlags, rlimits, mountExternal, seInfo, niceName,
+            JNI_FALSE, instructionSet, appDataDir, isTopApp, pkgDataInfoList,
+            whitelistedDataInfoList, bindMountAppDataDirs, bindMountAppStorageDirs);
 
 
     ((nativeSpecializeAppProcess_xtc_t *) jni::zygote::nativeSpecializeAppProcess->fnPtr)(env, clazz, uid, gid, gids, runtimeFlags, 
