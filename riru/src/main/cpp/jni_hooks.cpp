@@ -863,6 +863,25 @@ void nativeSpecializeAppProcess_r_dp2(
 }
 
 [[clang::no_stack_protector]]
+void nativeSpecializeAppProcess_xtc(JNIEnv *env, jclass clazz,
+    jint uid, jint gid, jintArray gids, jint runtimeFlags,
+    jobjectArray rlimits, jint mountExternal,
+    jstring seInfo, jstring niceName,
+    jstring instructionSet, jstring appDataDir)
+{
+    // ====== 预处理阶段 ======
+    nativeSpecializeAppProcess_pre(env, clazz, uid, gid, gids, runtimeFlags, 
+                                  rlimits, mountExternal, seInfo, niceName);
+
+
+    ((nativeSpecializeAppProcess_xtc_t *) jni::zygote::nativeSpecializeAppProcess->fnPtr)(env, clazz, uid, gid, gids, runtimeFlags, 
+                                  rlimits, mountExternal, seInfo, niceName);
+  
+    nativeSpecializeAppProcess_post(env, clazz, uid, JNI_FALSE); 
+}
+
+
+[[clang::no_stack_protector]]
 void nativeSpecializeAppProcess_u(
         JNIEnv *env, jclass clazz, jint uid, jint gid, jintArray gids, jint runtimeFlags,
         jobjectArray rlimits, jint mountExternal, jstring seInfo, jstring niceName,
